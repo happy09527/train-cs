@@ -6,14 +6,13 @@ import java.util.Set;
 /**
  * @author: ZhangX
  * @createDate: 2022/11/17
- * @description:
+ * @description:  One daily question
  */
 public class MatchStringNums {
     public static void main(String[] args) {
         MatchStringNums matchStringNums = new MatchStringNums();
         matchStringNums.numMatchingSubseq("abcde", new String[]{"a", "bb", "acd", "ace"});
     }
-
     public int numMatchingSubseq(String s, String[] words) {
         Set<Character> map = new HashSet<>();
         char[] cs = s.toCharArray();
@@ -30,10 +29,9 @@ public class MatchStringNums {
         }
         return res;
     }
-
     public boolean help(String s, String word, Set<Character> map) {
         int j = 0;
-        for (int i = 0; i < word.length() && j < s.length(); i++) {
+        for (int i = 0; i < word.length(); i++) {
             char c = word.charAt(i);
             if (!map.contains(c)) {
                 return false;

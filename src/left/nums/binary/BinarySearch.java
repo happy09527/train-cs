@@ -1,5 +1,7 @@
 package left.nums.binary;
 
+import java.util.HashMap;
+
 /**
  * @author: ZhangX
  * @createDate: 2024/10/13
@@ -8,10 +10,35 @@ package left.nums.binary;
 public class BinarySearch {
 
     public static void main(String[] args) {
-        int[] nums = new int[]{1,2,3,3,3,4,6};
-        System.out.println(findLeft(nums, 3));
+//        int[] nums = new int[]{1,2,3,3,3,4,6};
+//        System.out.println(findLeft(nums, 3));
+        int[] nums = new int[]{1,1,6,5,6,6,1,1,1,1};
+        System.out.println(totalFruit(nums));
     }
-
+    public static int totalFruit(int[] fruits) {
+        int res = 0;
+        if(fruits.length==1)return 1;
+        int n=fruits.length,first=0,second = 0,left=0;
+        for(int i=1;i<n;i++) {
+            if(fruits[i]!=fruits[first]){
+                second = i;
+                break;
+            }
+        }
+        for(int i=0;i<n;i++) {
+            if(fruits[i] == fruits[first]) {
+                first = i;
+            }else if( fruits[i] == fruits[second]) {
+                second = i;
+            }else {
+                left=first+1;
+                first = second;
+                second = i;
+            }
+            res = Math.max(res, i-left+1);
+        }
+        return res;
+    }
     /**
      * @description: 寻找大于target最左边的数
      * @param: [nums, target]
